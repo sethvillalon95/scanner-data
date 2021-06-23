@@ -9,8 +9,9 @@ public class Main {
 
     public Main(){
         try {
-//            parseFile("test.txt");
-            scanFile("test.txt");
+            parseFile("test.txt");
+//            scanFile("test.txt");
+
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -52,7 +53,7 @@ public class Main {
 
         double end = System.currentTimeMillis();
         double total = (end-start)/1000;
-        say("Finished with "+ " "+total);
+        say("Finished with "+ " "+total+" "+ "the number of times is "+counter);
 
     }
 
