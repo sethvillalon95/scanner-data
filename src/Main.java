@@ -1,12 +1,11 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Scanner;
+//import com.opencsv.CSVWriter;
+
 
 public class Main {
     ArrayList<Offline> offline_list;
@@ -17,6 +16,7 @@ public class Main {
         try {
 //            parseFile("test.txt");
             scanFile("test.txt");
+            updateSheet("test.csv");
 
         }catch (IOException e){
             e.printStackTrace();
@@ -61,24 +61,32 @@ public class Main {
                 Offline tmp = new Offline(tmpdate, tmptime, message[1]);
 //                say(message[1]);
                 offline_list.add(tmp);
-
-
-//                Timestamp tsp = new Timestamp(10, 10,10,10,10,10,10);
-//                say(tsp);
-//                Instant ist = new Instant(10,10);
                 counter++;
 //                say(test);
             }
         }
         s.close();
-
-
-
         double end = System.currentTimeMillis();
         double total = (end-start)/1000;
         say("Finished with "+ " "+total+" "+ "the number of times is "+counter);
 
     }
+
+    public void updateSheet(String fname) throws IOException {
+        File f = new File("fname");
+        FileWriter fw = new FileWriter(f);
+
+        for(Offline ofd:offline_list){
+//            say("adding");
+//            fw.append(ofd.deviceLabel+","+ofd.date+","+ofd.time+","+ofd.duration+"\n");
+              say(fw.append(ofd.deviceLabel));
+
+        }
+        fw.flush();
+        fw.close();
+//        CSVWriter cs = new CSVWriter (new FileWriter(f);
+    }
+
 
 
     public static void say(Object o){
